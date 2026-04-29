@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flow — Designer Fashion, Delivered in 60 Mins</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root{
+  --cream:#F7F3EC;
+  --cream-dark:#EDE5D5;
+  --white:#FFFFFF;
+  --espresso:#3D2B1F;
+  --espresso-deep:#2A1D13;
+  --sienna:#A0522D;
+  --sienna-hover:#8B4423;
+  --sienna-light:rgba(160,82,45,.08);
+  --gold:#C9A84C;
+  --gold-light:rgba(201,168,76,.15);
+  --muted:#8A7968;
+  --muted-light:#B0A594;
+  --border:rgba(61,43,31,0.1);
+  --border-strong:rgba(61,43,31,0.18);
+  --shadow-sm:0 2px 12px rgba(61,43,31,0.07);
+  --shadow-md:0 8px 32px rgba(61,43,31,0.10);
+  --shadow-lg:0 20px 60px rgba(61,43,31,0.14);
+  --radius:10px;
+  --radius-sm:6px;
+  --radius-lg:16px;
+  --radius-pill:100px;
+  --transition:.22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--white);color:var(--espresso);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+
+/* ── ANNOUNCE BAR ── */
+
+/* ── NAV ── */
+nav{
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:66px;
+  position:sticky;top:0;z-index:200;
+  transition:box-shadow var(--transition);
+}
+nav.scrolled{box-shadow:0 2px 20px rgba(61,43,31,0.08)}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.65rem;font-weight:400;
+  letter-spacing:.22em;color:var(--espresso);
+  transition:color var(--transition);
+}
+.nav-logo:hover{color:var(--sienna)}
+.nav-center{display:flex;gap:2.2rem}
+.nav-center a{
+  font-size:.78rem;letter-spacing:.06em;
+  color:var(--muted);transition:color var(--transition);
+  position:relative;padding-bottom:2px;
+}
+.nav-center a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--sienna);
+  transition:width var(--transition);
+}
+.nav-center a:hover{color:var(--espresso)}
+.nav-center a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.nav-icon-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);display:flex;align-items:center;
+  transition:color var(--transition);position:relative;
+  padding:.4rem;border-radius:var(--radius-sm);
+}
+.nav-icon-btn:hover{color:var(--espresso);background:var(--sienna-light)}
+.cart-badge{
+  position:absolute;top:0;right:0;
+  background:var(--sienna);color:#fff;
+  width:15px;height:15px;border-radius:50%;
+  font-size:.48rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--white);
+}
+.btn-nav{
+  background:var(--sienna);color:#fff;
+  font-size:.74rem;letter-spacing:.08em;font-weight:500;
+  padding:.5rem 1.3rem;border-radius:var(--radius-sm);
+  border:none;cursor:pointer;
+  transition:background var(--transition),transform var(--transition);
+  display:inline-block;
+}
+.btn-nav:hover{background:var(--sienna-hover);transform:translateY(-1px)}
+.nav-mobile-hide{display:none}
+
+/* ── HERO ── */
+.hero{
+  display:grid;grid-template-columns:1fr;
+  min-height:90vh;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(150deg,#F9F5EE 0%,#EDE5D5 55%,#E2D5C0 100%);
+}
+.hero-noise{
+  position:absolute;inset:0;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+.hero-pattern{
+  position:absolute;inset:0;opacity:.035;
+  background-image:
+    linear-gradient(var(--espresso) 1px,transparent 1px),
+    linear-gradient(90deg,var(--espresso) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-content{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5.5rem 2rem 4.5rem;
+  max-width:660px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sienna);margin-bottom:1.8rem;
+  background:var(--sienna-light);
+  border:1px solid rgba(160,82,45,.15);
+  padding:.4rem .9rem;border-radius:var(--radius-pill);
+  width:fit-content;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--sienna);
+  animation:pulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.75)}
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.2rem,7.5vw,5.8rem);
+  font-weight:300;line-height:1.03;
+  letter-spacing:-.02em;
+  margin-bottom:1.6rem;
+  color:var(--espresso);
+}
+.hero h1 em{font-style:italic;color:var(--sienna)}
+.hero-sub{
+  font-size:.97rem;color:var(--muted);
+  max-width:430px;margin-bottom:2.4rem;line-height:1.85;
+}
+.hero-sub strong{color:var(--espresso);font-weight:400}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-hero{
+  background:var(--sienna);color:#fff;
+  font-family:'DM Sans',sans-serif;font-weight:500;
+  font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:1rem 2.4rem;border-radius:var(--radius-sm);border:none;
+  cursor:pointer;display:inline-block;
+  transition:background var(--transition),transform var(--transition),box-shadow var(--transition);
+  box-shadow:0 4px 20px rgba(160,82,45,.25);
+}
+.btn-hero:hover{background:var(--sienna-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(160,82,45,.35)}
+.btn-hero:active{transform:translateY(0)}
+.btn-hero-ghost{
+  background:transparent;color:var(--espresso);
+  font-family:'DM Sans',sans-serif;font-weight:400;
+  font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:1rem 2.4rem;border-radius:var(--radius-sm);
+  border:1.5px solid rgba(61,43,31,0.22);
+  cursor:pointer;display:inline-block;
+  transition:border-color var(--transition),background var(--transition);
+}
+.btn-hero-ghost:hover{border-color:var(--espresso);background:rgba(61,43,31,.04)}
+.hero-trust{display:flex;gap:1.8rem;flex-wrap:wrap}
+.htrust-item{
+  display:flex;align-items:center;gap:.45rem;
+  font-size:.76rem;color:var(--muted);
+}
+.htrust-item svg{color:var(--sienna);flex-shrink:0}
+
+/* Hero right visual */
+.hero-visual{
+  position:relative;z-index:1;
+  display:none;align-items:center;justify-content:center;
+  padding:5rem 2rem;
+}
+.hero-card-float{
+  background:var(--white);border-radius:var(--radius-lg);
+  padding:1.25rem;width:228px;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+}
+.hcard-img{
+  height:210px;border-radius:12px;
+  background:linear-gradient(160deg,#EAE0D2,#CEB9A4);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;overflow:hidden;
+}
+.hcard-designer{font-size:.68rem;color:var(--muted);margin-bottom:.2rem;letter-spacing:.04em}
+.hcard-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:400;margin-bottom:.5rem;line-height:1.3}
+.hcard-price{font-size:.92rem;font-weight:500;color:var(--espresso);margin-bottom:.75rem}
+.hcard-delivery{
+  display:flex;align-items:center;gap:.45rem;
+  background:var(--sienna-light);border-radius:var(--radius-pill);
+  border:1px solid rgba(160,82,45,.15);
+  padding:.35rem .8rem;font-size:.67rem;font-weight:500;color:var(--sienna);
+}
+.hcard-badge{
+  position:absolute;top:-12px;right:-12px;
+  background:var(--espresso);color:#fff;
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;
+  padding:.38rem .8rem;border-radius:var(--radius-pill);
+  box-shadow:0 4px 12px rgba(61,43,31,.25);
+}
+
+/* ── SECTION LAYOUTS ── */
+.section-pad{padding:5.5rem 2rem}
+.section-pad-sm{padding:3.5rem 2rem}
+.max-w{max-width:1120px;margin:0 auto}
+.sec-header{margin-bottom:3rem}
+.sec-label{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sienna);display:block;margin-bottom:.6rem;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,3rem);
+  font-weight:300;line-height:1.1;color:var(--espresso);
+}
+.sec-title em{font-style:italic}
+.sec-sub{
+  font-size:.92rem;color:var(--muted);
+  margin-top:.75rem;max-width:500px;line-height:1.8;
+}
+
+/* ── CATEGORY PILLS ── */
+.categories{
+  background:var(--cream);
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--border);
+  border-top:1px solid var(--border);
+}
+.cat-scroll{
+  display:flex;gap:.6rem;overflow-x:auto;
+  scrollbar-width:none;max-width:1120px;margin:0 auto;
+}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-pill{
+  flex-shrink:0;padding:.48rem 1.2rem;border-radius:var(--radius-pill);
+  font-size:.76rem;letter-spacing:.03em;font-weight:400;
+  cursor:pointer;transition:all var(--transition);white-space:nowrap;
+  background:var(--white);color:var(--muted);
+  border:1px solid var(--border);
+}
+.cat-pill:hover{color:var(--espresso);border-color:var(--border-strong)}
+.cat-pill.active{background:var(--espresso);color:var(--white);border-color:var(--espresso)}
+
+/* ── PRODUCT CARDS ── */
+.drops-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.4rem;
+}
+.drop-card{
+  background:var(--white);border-radius:var(--radius);
+  border:1px solid var(--border);overflow:hidden;
+  cursor:pointer;
+  transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);
+}
+.drop-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--border-strong)}
+.drop-img{
+  aspect-ratio:3/4;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.drop-img svg{width:100%;height:100%}
+.drop-tag{
+  position:absolute;top:.75rem;left:.75rem;
+  background:var(--espresso);color:var(--cream);
+  font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  padding:.28rem .7rem;border-radius:var(--radius-sm);
+}
+.drop-fav{
+  position:absolute;top:.75rem;right:.75rem;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:none;
+  transition:background var(--transition),transform var(--transition);
+  box-shadow:0 2px 8px rgba(61,43,31,.1);
+}
+.drop-fav:hover{background:var(--white);transform:scale(1.08)}
+.drop-info{padding:1rem 1.1rem 1.1rem}
+.drop-designer{font-size:.67rem;color:var(--muted);margin-bottom:.18rem;letter-spacing:.04em}
+.drop-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:400;margin-bottom:.45rem;line-height:1.3}
+.drop-meta{display:flex;justify-content:space-between;align-items:center}
+.drop-price{font-size:.88rem;font-weight:500;color:var(--espresso)}
+.drop-eta{
+  display:flex;align-items:center;gap:.3rem;
+  font-size:.64rem;color:var(--sienna);font-weight:500;
+}
+.eta-dot{width:5px;height:5px;border-radius:50%;background:var(--sienna);animation:pulse 1.8s ease-in-out infinite}
+
+/* ── HOW IT WORKS ── */
+.how-section{background:var(--cream);padding:5.5rem 2rem}
+.how-steps{display:grid;grid-template-columns:1fr;gap:0}
+.how-step{
+  display:flex;gap:1.4rem;padding:2rem 0;
+  border-bottom:1px solid var(--border);
+}
+.how-step:last-child{border-bottom:none}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:300;
+  color:rgba(160,82,45,.18);line-height:1;
+  flex-shrink:0;width:48px;padding-top:.1rem;
+  user-select:none;
+}
+.step-icon{
+  width:44px;height:44px;border-radius:var(--radius);
+  background:var(--white);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:.2rem;
+  transition:border-color var(--transition),box-shadow var(--transition);
+}
+.how-step:hover .step-icon{border-color:rgba(160,82,45,.3);box-shadow:0 4px 14px rgba(160,82,45,.1)}
+.step-body h4{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:400;margin-bottom:.4rem;color:var(--espresso)}
+.step-body p{font-size:.87rem;color:var(--muted);line-height:1.75}
+.step-body p strong{color:var(--espresso);font-weight:400}
+
+/* ── ESCROW STRIP ── */
+.escrow-strip{
+  background:var(--espresso);padding:3.5rem 2rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.escrow-strip::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(160,82,45,.2) 0%,transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08) 0%,transparent 60%);
+}
+.escrow-strip h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:300;
+  color:var(--cream);margin-bottom:.85rem;
+  position:relative;
+}
+.escrow-strip h3 em{font-style:italic;color:var(--gold)}
+.escrow-strip p{
+  font-size:.88rem;color:rgba(245,240,230,.5);
+  max-width:480px;margin:0 auto 2rem;line-height:1.8;
+  position:relative;
+}
+.escrow-flow{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:0;max-width:640px;margin:0 auto;
+  position:relative;
+}
+.ef-step{display:flex;flex-direction:column;align-items:center;gap:.45rem;flex:1;min-width:80px}
+.ef-circle{
+  width:38px;height:38px;border-radius:50%;
+  border:1.5px solid rgba(245,240,230,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:500;color:rgba(245,240,230,.55);
+  transition:all .3s ease;
+}
+.ef-step.active .ef-circle{background:var(--sienna);border-color:var(--sienna);color:#fff;box-shadow:0 0 20px rgba(160,82,45,.4)}
+.ef-step.done .ef-circle{background:rgba(160,82,45,.25);border-color:rgba(160,82,45,.5);color:rgba(245,240,230,.85)}
+.ef-label{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,230,.35);text-align:center;max-width:72px;line-height:1.45}
+.ef-step.active .ef-label,.ef-step.done .ef-label{color:rgba(245,240,230,.7)}
+.ef-line{flex:1;height:1px;background:rgba(245,240,230,.12);min-width:24px;margin-top:-22px}
+
+/* ── DESIGNER CARDS ── */
+.designers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.designer-card{
+  border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--border);background:var(--white);
+  cursor:pointer;
+  transition:box-shadow var(--transition),transform var(--transition);
+}
+.designer-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.dc-cover{height:122px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.dc-avatar{
+  width:54px;height:54px;border-radius:50%;
+  border:3px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:400;color:var(--white);
+  position:absolute;bottom:-22px;left:1.2rem;z-index:2;
+  box-shadow:0 4px 16px rgba(61,43,31,.2);
+}
+.dc-body{padding:1.6rem 1.2rem 1.2rem}
+.dc-name{font-family:'Cormorant Garamond',serif;font-size:1.02rem;font-weight:400;margin-bottom:.2rem}
+.dc-location{font-size:.69rem;color:var(--muted);margin-bottom:.6rem}
+.dc-stats{display:flex;gap:1.2rem}
+.dc-stat{font-size:.67rem;color:var(--muted)}
+.dc-stat span{color:var(--espresso);font-weight:500;display:block;font-size:.8rem}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--cream);padding:3.5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.trust-items{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;max-width:920px;margin:0 auto}
+.ti{display:flex;align-items:flex-start;gap:.85rem;max-width:225px}
+.ti-icon{
+  width:38px;height:38px;border-radius:var(--radius-sm);
+  background:var(--white);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.ti-title{font-size:.82rem;font-weight:500;color:var(--espresso);margin-bottom:.22rem}
+.ti-desc{font-size:.74rem;color:var(--muted);line-height:1.58}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:1fr;gap:1.2rem}
+.testi-card{
+  background:var(--cream);border-radius:var(--radius);
+  padding:1.7rem;border:1px solid var(--border);
+  transition:box-shadow var(--transition);
+}
+.testi-card:hover{box-shadow:var(--shadow-sm)}
+.testi-stars{color:var(--gold);font-size:.82rem;margin-bottom:.75rem;letter-spacing:.1em}
+.testi-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.08rem;font-weight:300;font-style:italic;
+  line-height:1.65;margin-bottom:1.1rem;color:var(--espresso);
+}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-av{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.68rem;font-weight:500;color:#fff;flex-shrink:0;
+}
+.testi-name{font-size:.8rem;font-weight:500;color:var(--espresso)}
+.testi-loc{font-size:.69rem;color:var(--muted)}
+
+/* ── APP DOWNLOAD CTA ── */
+.app-cta{
+  background:var(--espresso);padding:5.5rem 2rem;
+  display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;
+  position:relative;overflow:hidden;
+}
+.app-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 15% 60%,rgba(160,82,45,.22) 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 30%,rgba(201,168,76,.06) 0%,transparent 50%);
+}
+.app-cta-copy{position:relative}
+.app-cta-copy .sec-label{color:rgba(245,240,230,.35)}
+.app-cta-copy h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:300;
+  color:var(--cream);line-height:1.08;margin-bottom:1rem;
+}
+.app-cta-copy h2 em{font-style:italic;color:var(--gold)}
+.app-cta-copy p{font-size:.92rem;color:rgba(245,240,230,.48);max-width:400px;line-height:1.8;margin-bottom:2.2rem}
+.app-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.app-store-btn{
+  display:flex;align-items:center;gap:.75rem;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);padding:.8rem 1.3rem;cursor:pointer;
+  text-decoration:none;
+  transition:background var(--transition),border-color var(--transition),transform var(--transition);
+}
+.app-store-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+.asb-label{font-size:.58rem;color:rgba(245,240,230,.4);letter-spacing:.07em;text-transform:uppercase;display:block}
+.asb-store{font-size:.88rem;font-weight:500;color:var(--cream)}
+.phone-mockup-wrap{
+  position:relative;text-align:center;
+}
+.phone-outer{
+  display:inline-block;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;padding:1rem;
+  box-shadow:0 28px 70px rgba(0,0,0,.35);
+}
+.phone-inner{
+  width:185px;background:#fff;border-radius:23px;
+  overflow:hidden;padding-bottom:1rem;
+}
+.phone-notch{background:#3D2B1F;height:22px;width:75px;border-radius:0 0 13px 13px;margin:0 auto}
+.phone-track-label{padding:.55rem 1rem .2rem;font-size:.52rem;letter-spacing:.09em;text-transform:uppercase;color:#8A7968;font-family:'DM Sans',sans-serif}
+.phone-track-name{padding:0 1rem;font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#3D2B1F;font-weight:400}
+.phone-status{margin:.75rem 1rem;background:#F7F3EC;border-radius:9px;padding:.72rem;display:flex;align-items:center;gap:.5rem}
+.phone-status-dot{width:6px;height:6px;border-radius:50%;background:#A0522D;animation:pulse 1.6s infinite;flex-shrink:0}
+.phone-status-title{font-size:.58rem;font-weight:500;color:#A0522D;font-family:'DM Sans',sans-serif}
+.phone-status-sub{font-size:.53rem;color:#8A7968;font-family:'DM Sans',sans-serif}
+.phone-map{margin:0 1rem;background:#F7F3EC;border-radius:9px;height:82px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.phone-actions{margin:.72rem 1rem 0;display:flex;gap:.42rem}
+.phone-btn-confirm{flex:1;background:#A0522D;border-radius:5px;padding:.48rem;text-align:center;font-size:.58rem;font-weight:500;color:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;transition:background var(--transition)}
+.phone-btn-confirm:hover{background:#8B4423}
+.phone-btn-return{background:#F7F3EC;border:1px solid rgba(61,43,31,.14);border-radius:5px;padding:.48rem .75rem;font-size:.58rem;color:#8A7968;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:background var(--transition)}
+
+/* ── FOOTER ── */
+footer{background:var(--espresso-deep);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1120px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:1fr;gap:2.5rem;
+  margin-bottom:2.5rem;padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(245,240,230,.07);
+}
+.footer-brand .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.22em;color:var(--cream);font-weight:300}
+.footer-brand p{font-size:.79rem;color:rgba(245,240,230,.28);margin-top:.6rem;max-width:240px;line-height:1.7}
+.footer-col h5{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,230,.28);margin-bottom:1.1rem}
+.footer-col a{display:block;font-size:.81rem;color:rgba(245,240,230,.45);margin-bottom:.5rem;transition:color var(--transition)}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-bottom p{font-size:.7rem;color:rgba(245,240,230,.18)}
+.footer-social{display:flex;gap:.8rem;align-items:center}
+.footer-social a{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(245,240,230,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(245,240,230,.35);
+  transition:border-color var(--transition),color var(--transition);
+}
+.footer-social a:hover{border-color:rgba(245,240,230,.4);color:rgba(245,240,230,.8)}
+
+/* ── DIVIDER ── */
+.hr{height:1px;background:var(--border);margin:0}
+
+/* ── REVEAL ANIMATIONS ── */
+.r{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.r.in{opacity:1;transform:translateY(0)}
+.r2{opacity:0;transform:translateY(22px);transition:opacity .65s .12s cubic-bezier(.4,0,.2,1),transform .65s .12s cubic-bezier(.4,0,.2,1)}
+.r2.in{opacity:1;transform:translateY(0)}
+.r3{opacity:0;transform:translateY(22px);transition:opacity .65s .24s cubic-bezier(.4,0,.2,1),transform .65s .24s cubic-bezier(.4,0,.2,1)}
+.r3.in{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(min-width:600px){
+  .drops-grid{grid-template-columns:repeat(3,1fr)}
+  .designers-grid{grid-template-columns:repeat(4,1fr)}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .how-steps{grid-template-columns:1fr 1fr}
+  .how-step{border-right:1px solid var(--border);border-bottom:none;padding:2rem 2rem 2rem 0}
+  .how-step:nth-child(2n){border-right:none;padding:2rem 0 2rem 2rem}
+}
+@media(min-width:900px){
+  .hero{grid-template-columns:1fr 1fr;min-height:87vh}
+  .hero-visual{display:flex}
+  .hero-content{padding:5rem 4.5rem 5rem}
+  .drops-grid{grid-template-columns:repeat(4,1fr)}
+  .testi-grid{grid-template-columns:repeat(3,1fr)}
+  .how-steps{grid-template-columns:repeat(4,1fr)}
+  .how-step{border-right:1px solid var(--border);border-bottom:none;padding:1.5rem 1.5rem 1.5rem 0}
+  .how-step:last-child{border-right:none}
+  .how-step:nth-child(2n){border-right:1px solid var(--border);padding:1.5rem 1.5rem 1.5rem 0}
+  .how-step:nth-child(4n){border-right:none}
+  .app-cta{grid-template-columns:1fr 1fr;padding:6.5rem 4.5rem}
+  nav{padding:0 3rem}
+  .nav-mobile-hide{display:flex}
+  .footer-top{grid-template-columns:2fr 1fr 1fr 1fr}
+  .section-pad{padding:6.5rem 3rem}
+  .how-section{padding:6.5rem 3rem}
+  .section-pad-sm{padding:4rem 3rem}
+}
+@media(max-width:599px){
+  .drops-grid{grid-template-columns:1fr 1fr}
+  .nav-center{display:none}
+  .announce-close{position:static;margin-left:.5rem}
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">F L O W</a>
+  <div class="nav-center nav-mobile-hide">
+    <a href="#drops">New Drops</a>
+    <a href="#designers">Designers</a>
+    <a href="#how">How It Works</a>
+    <a href="#">Occasions</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon-btn" aria-label="Search">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 13.5L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <button class="nav-icon-btn" aria-label="Wishlist">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M10 16.5S3 12 3 7a4 4 0 017-2.65A4 4 0 0117 7c0 5-7 9.5-7 9.5z" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <button class="nav-icon-btn" aria-label="Cart" style="position:relative">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M6 6h11l-1.5 7h-8L6 6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 6L5 3H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8.5" cy="16.5" r="1.2" fill="currentColor"/><circle cx="14.5" cy="16.5" r="1.2" fill="currentColor"/></svg>
+      <div class="cart-badge">2</div>
+    </button>
+    <a href="#" class="btn-nav">Sign In</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="live-dot"></div>
+      Live in Lagos, Abuja &amp; PH
+    </div>
+    <h1>Fashion from<br/>your city's<br/><em>best designers,</em><br/>at your door.</h1>
+    <p class="hero-sub">
+      Browse original pieces from verified Nigerian designers.
+      <strong>Delivered in under 60 minutes.</strong>
+      Your money stays safe until you've tried it on and love it.
+    </p>
+    <div class="hero-ctas">
+      <a href="#drops" class="btn-hero">Shop New Drops</a>
+      <a href="#how" class="btn-hero-ghost">See How It Works</a>
+    </div>
+    <div class="hero-trust">
+      <div class="htrust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.6L10.8 13L7 10.8L3.2 13L4 8.6L1 5.7L5.2 5.2Z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Verified designers only
+      </div>
+      <div class="htrust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C7 1.5 2 3.5 2 7.5v2.8l5 2.5 5-2.5V7.5c0-4-5-6-5-6z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Escrow protected
+      </div>
+      <div class="htrust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Under 60 min delivery
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero floating card -->
+  <div class="hero-visual">
+    <div class="hero-card-float r">
+      <div class="hcard-badge">New Drop ✦</div>
+      <div class="hcard-img">
+        <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" width="200" height="210">
+          <rect width="200" height="210" fill="#DDD0BE"/>
+          <path d="M70 50 Q100 42 130 50 L140 80 Q100 92 60 80 Z" fill="#3D2B1F" opacity=".82"/>
+          <rect x="65" y="80" width="70" height="110" rx="5" fill="#3D2B1F" opacity=".72"/>
+          <path d="M65 80 L58 50 L46 60 L60 80Z" fill="#2A1D13" opacity=".7"/>
+          <path d="M135 80 L142 50 L154 60 L140 80Z" fill="#2A1D13" opacity=".7"/>
+          <path d="M75 100 Q100 108 125 100" stroke="rgba(201,168,76,.55)" stroke-width="1.5" fill="none"/>
+          <path d="M75 118 Q100 126 125 118" stroke="rgba(201,168,76,.4)" stroke-width="1.5" fill="none"/>
+          <path d="M76 136 Q100 143 124 136" stroke="rgba(201,168,76,.3)" stroke-width="1.5" fill="none"/>
+          <rect x="88" y="82" width="24" height="3" rx="1.5" fill="rgba(245,240,230,.3)"/>
+        </svg>
+      </div>
+      <div class="hcard-designer">Studio Kòfó · VI</div>
+      <div class="hcard-name">Ísọ̀kan Blazer, Espresso</div>
+      <div class="hcard-price">₦45,000</div>
+      <div class="hcard-delivery">
+        <div class="live-dot" style="width:6px;height:6px"></div>
+        Ready in 38 mins · 1.4 km
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<div class="categories">
+  <div class="cat-scroll">
+    <button class="cat-pill active">All Drops</button>
+    <button class="cat-pill">Ankara &amp; Aso-oke</button>
+    <button class="cat-pill">Ready-to-Wear</button>
+    <button class="cat-pill">Occasion Wear</button>
+    <button class="cat-pill">Casual Luxe</button>
+    <button class="cat-pill">Bridal</button>
+    <button class="cat-pill">Men's Cuts</button>
+    <button class="cat-pill">Accessories</button>
+    <button class="cat-pill">Custom Orders</button>
+  </div>
+</div>
+
+<!-- FEATURED DROPS -->
+<section class="section-pad" id="drops">
+  <div class="max-w">
+    <div class="sec-header r">
+      <span class="sec-label">Fresh Today</span>
+      <h2 class="sec-title">New <em>Drops</em> Near You</h2>
+      <p class="sec-sub">Every piece listed below is available for delivery to you right now. All from designers verified by Flow.</p>
+    </div>
+
+    <div class="drops-grid">
+      <!-- Drop 1 -->
+      <div class="drop-card r">
+        <div class="drop-img" style="background:linear-gradient(145deg,#E8DDD0,#C9B5A0)">
+          <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="200" height="270" fill="transparent"/>
+            <path d="M65 60 Q100 50 135 60 L145 90 Q100 104 55 90Z" fill="#A0522D" opacity=".82"/>
+            <rect x="60" y="90" width="80" height="150" rx="5" fill="#A0522D" opacity=".72"/>
+            <path d="M60 90 L52 60 L40 70 L55 90Z" fill="#7a3f20" opacity=".62"/>
+            <path d="M140 90 L148 60 L160 70 L145 90Z" fill="#7a3f20" opacity=".62"/>
+            <path d="M72 118 Q100 126 128 118" stroke="rgba(255,255,255,.32)" stroke-width="1.5" fill="none"/>
+            <path d="M72 136 Q100 144 128 136" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="drop-tag">New</div>
+          <button class="drop-fav" data-fav="0">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12S1.5 8.5 1.5 5a3 3 0 015.5-1.65A3 3 0 0112.5 5C12.5 8.5 7 12 7 12z" stroke="#3D2B1F" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+        <div class="drop-info">
+          <div class="drop-designer">Studio Kòfó · Victoria Island</div>
+          <div class="drop-name">Ember Wrap Blouse</div>
+          <div class="drop-meta">
+            <div class="drop-price">₦28,500</div>
+            <div class="drop-eta"><div class="eta-dot"></div>38 mins</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drop 2 -->
+      <div class="drop-card r2">
+        <div class="drop-img" style="background:linear-gradient(145deg,#E0DAD0,#C4BCAE)">
+          <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="200" height="270" fill="transparent"/>
+            <ellipse cx="100" cy="75" rx="30" ry="14" fill="#3D2B1F" opacity=".76"/>
+            <path d="M70 75 Q60 110 64 240 L136 240 Q140 110 130 75Z" fill="#4A3525" opacity=".8"/>
+            <path d="M70 75 Q58 95 54 140L64 144 Q66 110 70 75Z" fill="#2A1D13" opacity=".5"/>
+            <path d="M130 75 Q142 95 146 140L136 144 Q134 110 130 75Z" fill="#2A1D13" opacity=".5"/>
+            <path d="M76 110 Q100 120 124 110" stroke="rgba(201,168,76,.55)" stroke-width="2" fill="none"/>
+            <path d="M74 140 Q100 152 126 140" stroke="rgba(201,168,76,.4)" stroke-width="2" fill="none"/>
+            <path d="M74 170 Q100 180 126 170" stroke="rgba(201,168,76,.3)" stroke-width="2" fill="none"/>
+            <path d="M74 200 Q100 210 126 200" stroke="rgba(201,168,76,.22)" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="drop-tag">Hot</div>
+          <button class="drop-fav" data-fav="0">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12S1.5 8.5 1.5 5a3 3 0 015.5-1.65A3 3 0 0112.5 5C12.5 8.5 7 12 7 12z" stroke="#3D2B1F" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+        <div class="drop-info">
+          <div class="drop-designer">Àdùkẹ́ Atelier · Ikoyi</div>
+          <div class="drop-name">Adire Flow Dress</div>
+          <div class="drop-meta">
+            <div class="drop-price">₦62,000</div>
+            <div class="drop-eta"><div class="eta-dot"></div>50 mins</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drop 3 -->
+      <div class="drop-card r">
+        <div class="drop-img" style="background:linear-gradient(145deg,#EDE0CC,#D4C4A8)">
+          <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="200" height="270" fill="transparent"/>
+            <rect x="56" y="50" width="88" height="46" rx="6" fill="#C9A84C" opacity=".72"/>
+            <rect x="62" y="96" width="76" height="150" rx="5" fill="#C9A84C" opacity=".66"/>
+            <rect x="44" y="50" width="22" height="80" rx="4" fill="#B8962E" opacity=".52"/>
+            <rect x="134" y="50" width="22" height="80" rx="4" fill="#B8962E" opacity=".52"/>
+            <line x1="100" y1="96" x2="100" y2="246" stroke="rgba(61,43,31,.18)" stroke-width="1"/>
+            <rect x="70" y="108" width="22" height="22" rx="3" fill="rgba(61,43,31,.2)"/>
+            <rect x="108" y="108" width="22" height="22" rx="3" fill="rgba(61,43,31,.15)"/>
+            <rect x="70" y="138" width="22" height="22" rx="3" fill="rgba(61,43,31,.15)"/>
+            <rect x="108" y="138" width="22" height="22" rx="3" fill="rgba(61,43,31,.2)"/>
+          </svg>
+          <div class="drop-tag">Limited</div>
+          <button class="drop-fav" data-fav="0">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12S1.5 8.5 1.5 5a3 3 0 015.5-1.65A3 3 0 0112.5 5C12.5 8.5 7 12 7 12z" stroke="#3D2B1F" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+        <div class="drop-info">
+          <div class="drop-designer">Zara Threads NG · Lekki</div>
+          <div class="drop-name">Gold Kente Co-ord Set</div>
+          <div class="drop-meta">
+            <div class="drop-price">₦78,000</div>
+            <div class="drop-eta"><div class="eta-dot"></div>55 mins</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drop 4 -->
+      <div class="drop-card r2">
+        <div class="drop-img" style="background:linear-gradient(145deg,#E8E2D8,#D0C8B8)">
+          <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="200" height="270" fill="transparent"/>
+            <path d="M68 48 Q100 38 132 48 L148 88 Q100 105 52 88Z" fill="#3D2B1F" opacity=".84"/>
+            <rect x="56" y="88" width="88" height="155" rx="5" fill="#3D2B1F" opacity=".74"/>
+            <path d="M56 88 L48 48 L36 60 L52 88Z" fill="#2A1D13" opacity=".65"/>
+            <path d="M144 88 L152 48 L164 60 L148 88Z" fill="#2A1D13" opacity=".65"/>
+            <rect x="80" y="100" width="40" height="4" rx="2" fill="rgba(201,168,76,.65)"/>
+            <path d="M76 125 Q100 132 124 125" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none"/>
+            <path d="M76 148 Q100 155 124 148" stroke="rgba(255,255,255,.16)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <button class="drop-fav" data-fav="0">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12S1.5 8.5 1.5 5a3 3 0 015.5-1.65A3 3 0 0112.5 5C12.5 8.5 7 12 7 12z" stroke="#3D2B1F" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+        <div class="drop-info">
+          <div class="drop-designer">House of Tola · Abuja</div>
+          <div class="drop-name">Midnight Agbada Suit</div>
+          <div class="drop-meta">
+            <div class="drop-price">₦95,000</div>
+            <div class="drop-eta"><div class="eta-dot"></div>45 mins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.8rem" class="r">
+      <a href="#" class="btn-hero-ghost">View All Designers &amp; Pieces →</a>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="max-w">
+    <div class="sec-header r">
+      <span class="sec-label">How It Works</span>
+      <h2 class="sec-title">From <em>browse</em> to<br/>your door — 4 steps.</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step r">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#A0522D" stroke-width="1.5"/><path d="M14 14L18 18" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-body">
+          <h4>Browse &amp; Pick</h4>
+          <p>Open Flow, see designers near you sorted by distance. Each listing shows <strong>real photos and a live delivery window.</strong> Tap a piece you love.</p>
+        </div>
+      </div>
+      <div class="how-step r2">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C10 2 4 4.5 4 9v3.5l6 3 6-3V9c0-4.5-6-7-6-7z" stroke="#A0522D" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-body">
+          <h4>Pay Into Escrow</h4>
+          <p>You pay — but your money goes into a <strong>protected vault</strong>, not to the designer. Not yet. It waits until you're satisfied.</p>
+        </div>
+      </div>
+      <div class="how-step r">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="14" r="3" stroke="#A0522D" stroke-width="1.5"/><path d="M6 14H2M14 14h4M10 11V5" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-body">
+          <h4>Courier Arrives</h4>
+          <p>A vetted Flow courier picks it up from the studio and <strong>comes to your gate</strong>. Live tracking the whole way. Under 60 minutes.</p>
+        </div>
+      </div>
+      <div class="how-step r2">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-body">
+          <h4>Try On, Then Decide</h4>
+          <p>Courier waits. You try it on. Love it? <strong>Tap "It's a fit" — payment releases.</strong> Doesn't work? Hand it back. Full refund, no stories.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCROW STRIP -->
+<div class="escrow-strip">
+  <h3>Your money moves <em>only when you say so.</em></h3>
+  <p>Flow holds your payment in a secure escrow vault until you personally confirm the piece fits and meets your standard. Zero risk to you.</p>
+  <div class="escrow-flow" id="ef">
+    <div class="ef-step done">
+      <div class="ef-circle">✓</div>
+      <div class="ef-label">Funds in Vault</div>
+    </div>
+    <div class="ef-line"></div>
+    <div class="ef-step done">
+      <div class="ef-circle">✓</div>
+      <div class="ef-label">Studio Handoff</div>
+    </div>
+    <div class="ef-line"></div>
+    <div class="ef-step active">
+      <div class="ef-circle">→</div>
+      <div class="ef-label">On the Road</div>
+    </div>
+    <div class="ef-line"></div>
+    <div class="ef-step">
+      <div class="ef-circle">★</div>
+      <div class="ef-label">Fit Confirmed</div>
+    </div>
+  </div>
+</div>
+
+<!-- DESIGNERS -->
+<section class="section-pad" id="designers">
+  <div class="max-w">
+    <div class="sec-header r">
+      <span class="sec-label">Verified Creators</span>
+      <h2 class="sec-title">Meet the <em>designers</em><br/>behind the drops</h2>
+    </div>
+    <div class="designers-grid">
+      <div class="designer-card r">
+        <div class="dc-cover" style="background:linear-gradient(135deg,#A0522D,#7a3f20)">
+          <div class="dc-avatar" style="background:#3D2B1F">SK</div>
+        </div>
+        <div class="dc-body">
+          <div class="dc-name">Studio Kòfó</div>
+          <div class="dc-location">📍 Victoria Island, Lagos</div>
+          <div class="dc-stats">
+            <div class="dc-stat"><span>148</span>Pieces</div>
+            <div class="dc-stat"><span>4.9★</span>Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-card r2">
+        <div class="dc-cover" style="background:linear-gradient(135deg,#3D2B1F,#2A1D13)">
+          <div class="dc-avatar" style="background:#A0522D">AÀ</div>
+        </div>
+        <div class="dc-body">
+          <div class="dc-name">Àdùkẹ́ Atelier</div>
+          <div class="dc-location">📍 Ikoyi, Lagos</div>
+          <div class="dc-stats">
+            <div class="dc-stat"><span>92</span>Pieces</div>
+            <div class="dc-stat"><span>4.8★</span>Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-card r">
+        <div class="dc-cover" style="background:linear-gradient(135deg,#C9A84C,#9A7A2A)">
+          <div class="dc-avatar" style="background:#3D2B1F">ZT</div>
+        </div>
+        <div class="dc-body">
+          <div class="dc-name">Zara Threads NG</div>
+          <div class="dc-location">📍 Lekki Phase 1</div>
+          <div class="dc-stats">
+            <div class="dc-stat"><span>67</span>Pieces</div>
+            <div class="dc-stat"><span>4.9★</span>Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-card r2">
+        <div class="dc-cover" style="background:linear-gradient(135deg,#5C4033,#3D2B1F)">
+          <div class="dc-avatar" style="background:#A0522D">HT</div>
+        </div>
+        <div class="dc-body">
+          <div class="dc-name">House of Tola</div>
+          <div class="dc-location">📍 Wuse 2, Abuja</div>
+          <div class="dc-stats">
+            <div class="dc-stat"><span>203</span>Pieces</div>
+            <div class="dc-stat"><span>5.0★</span>Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-items">
+    <div class="ti r">
+      <div class="ti-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C9 2 3 4.5 3 9v3.5l6 3 6-3V9c0-4.5-6-7-6-7z" stroke="#A0522D" stroke-width="1.3"/></svg>
+      </div>
+      <div>
+        <div class="ti-title">Escrow Protected</div>
+        <div class="ti-desc">Funds held in vault until you confirm the fit. Not before.</div>
+      </div>
+    </div>
+    <div class="ti r">
+      <div class="ti-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2l1.8 5.2 5.2.5-4 3.8.9 5.2L9 14.3l-4 2.4.9-5.2-4-3.8 5.2-.5z" stroke="#A0522D" stroke-width="1.3" fill="none"/></svg>
+      </div>
+      <div>
+        <div class="ti-title">Verified Designers</div>
+        <div class="ti-desc">Every studio passes a quality review before listing on Flow.</div>
+      </div>
+    </div>
+    <div class="ti r">
+      <div class="ti-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#A0522D" stroke-width="1.3"/><path d="M9 5v4l2.5 2.5" stroke="#A0522D" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="ti-title">Courier Stays at Gate</div>
+        <div class="ti-desc">Try it on. Return it if needed. Courier always waits.</div>
+      </div>
+    </div>
+    <div class="ti r">
+      <div class="ti-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="ti-title">Easy Returns</div>
+        <div class="ti-desc">Hand it back on the spot. Full refund, zero deductions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad">
+  <div class="max-w">
+    <div class="sec-header r">
+      <span class="sec-label">Real Customers</span>
+      <h2 class="sec-title">What people<br/><em>actually say</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card r">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I ordered a wrap dress at 1pm and wore it to an event by 3. The courier waited while I tried it on — it was perfect. This is how it should work."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#A0522D">CO</div>
+          <div>
+            <div class="testi-name">Chiamaka O.</div>
+            <div class="testi-loc">Victoria Island, Lagos</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card r2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The escrow thing gave me peace of mind. I've been burned by Instagram vendors before. With Flow I knew my money was safe till I was satisfied."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#3D2B1F">FA</div>
+          <div>
+            <div class="testi-name">Fatima A.</div>
+            <div class="testi-loc">Wuse 2, Abuja</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card r3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Size wasn't right the first time. Courier took it back, designer adjusted it, came back the next day. No drama. I've used Flow six times since."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#7a3f20">BK</div>
+          <div>
+            <div class="testi-name">Bimbo K.</div>
+            <div class="testi-loc">Lekki Phase 1, Lagos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP DOWNLOAD CTA -->
+<section class="app-cta">
+  <div class="app-cta-copy r">
+    <span class="sec-label">Get the App</span>
+    <h2>Your city's fashion,<br/><em>in your pocket.</em></h2>
+    <p>Browse drops, track your delivery in real time, and release payments with one tap. Available on iOS and Android.</p>
+    <div class="app-btns">
+      <a href="#" class="app-store-btn">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M16 12c0-2.8 2.2-4.1 2.3-4.2-.7-1-1.7-1.9-3-1.9-.9-.1-2.2.5-2.8.5-.7 0-1.7-.5-2.8-.5-2.2 0-4.3 1.8-4.3 5.3 0 3.4 2.5 7.3 4.4 7.3 1 0 1.8-.7 3.1-.7 1.2 0 1.9.7 3.2.7 1.8 0 4-4 4-4s-4.1-1.3-4.1-4.5zM13.5 4.5c.8-1 1.4-2.3 1.2-3.7-1.2.1-2.6.8-3.4 1.8-.8.9-1.4 2.3-1.2 3.6 1.3.1 2.6-.6 3.4-1.7z" stroke="rgba(245,240,230,.55)" stroke-width="1" fill="rgba(245,240,230,.07)"/></svg>
+        <div>
+          <span class="asb-label">Download on the</span>
+          <span class="asb-store">App Store</span>
+        </div>
+      </a>
+      <a href="#" class="app-store-btn">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 2.5l7.7 8.5L3 19.5" stroke="rgba(245,240,230,.5)" stroke-width="1.2" stroke-linecap="round"/><path d="M19 11H10.7" stroke="rgba(245,240,230,.5)" stroke-width="1.2" stroke-linecap="round"/><path d="M3 19.5l7-3.9M3 2.5l7 3.9" stroke="rgba(245,240,230,.38)" stroke-width="1.2"/></svg>
+        <div>
+          <span class="asb-label">Get it on</span>
+          <span class="asb-store">Google Play</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="phone-mockup-wrap r2">
+    <div class="phone-outer">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+        <div class="phone-track-label">Tracking Order #4402</div>
+        <div class="phone-track-name">Ísọ̀kan Blazer</div>
+        <div class="phone-status">
+          <div class="phone-status-dot"></div>
+          <div>
+            <div class="phone-status-title">Courier In Motion</div>
+            <div class="phone-status-sub">Arriving in ~12 mins</div>
+          </div>
+        </div>
+        <div class="phone-map">
+          <svg width="140" height="60" viewBox="0 0 140 60" style="opacity:.45">
+            <path d="M10 40 Q30 20 50 35 Q70 50 90 25 Q110 5 130 20" stroke="#A0522D" stroke-width="2" fill="none" stroke-dasharray="4 2"/>
+            <circle cx="125" cy="22" r="5" fill="#A0522D" opacity=".85"/>
+            <circle cx="15" cy="39" r="3" fill="#3D2B1F" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="phone-actions">
+          <button class="phone-btn-confirm">It's a Fit ✓</button>
+          <button class="phone-btn-return">Return</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">F L O W</div>
+        <p>On-demand designer fashion from Nigeria's best independent studios. Delivered to your door.</p>
+        <div class="footer-social" style="margin-top:1.2rem">
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter / X">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg width="13" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9a8.27 8.27 0 004.84 1.55V7.1a4.85 4.85 0 01-1.07-.41z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <a href="#">New Drops</a>
+        <a href="#">Designers</a>
+        <a href="#">Occasions</a>
+        <a href="#">Men's Cuts</a>
+        <a href="#">Bridal</a>
+      </div>
+      <div class="footer-col">
+        <h5>Help</h5>
+        <a href="#">How It Works</a>
+        <a href="#">Escrow FAQ</a>
+        <a href="#">Returns</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About Flow</a>
+        <a href="#">Sell on Flow</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Flow Marketplace Ltd. All rights reserved.</p>
+      <p>Lagos · Abuja · Port Harcourt</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 55);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: .07 });
+document.querySelectorAll('.r,.r2,.r3').forEach(el => obs.observe(el));
+
+// Nav shadow on scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// Category pills
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+
+// Wishlist toggle
+document.querySelectorAll('.drop-fav').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const path = btn.querySelector('path');
+    if (btn.dataset.fav === '1') {
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', '#3D2B1F');
+      btn.dataset.fav = '0';
+    } else {
+      path.setAttribute('fill', '#A0522D');
+      path.setAttribute('stroke', '#A0522D');
+      btn.dataset.fav = '1';
+    }
+  });
+});
+</script>
+</body>
+</html>
